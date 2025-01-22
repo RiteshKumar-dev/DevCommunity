@@ -11,7 +11,7 @@ interface PageProps {
 }
 
 const Page: React.FC<PageProps> = async ({ params }) => {
-  const { quesId, quesName } = await params; // Await the promise to extract quesId and quesName
+  const { quesId } = await params; // Await the promise to extract quesId and quesName
   const question = await databases.getDocument(db, questionCollection, quesId);
 
   return <EditQues question={question} />;
