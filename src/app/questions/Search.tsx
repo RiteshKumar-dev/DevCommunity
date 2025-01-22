@@ -9,11 +9,12 @@ const Search = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
-  const [search, setSearch] = useState(searchParams.get('search') || '');
+  const [search, setSearch] = useState(searchParams?.get('search') || '');
   const [isLoading, setIsLoading] = useState(false);
 
+  // Update the search input value when the query param changes
   useEffect(() => {
-    setSearch(() => searchParams.get('search') || '');
+    setSearch(() => searchParams?.get('search') || '');
   }, [searchParams]);
 
   const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -27,19 +28,26 @@ const Search = () => {
 
     setIsLoading(true);
 
-    // Construct new URL with updated search param
-    const newSearchParams = new URLSearchParams(searchParams.toString());
-    newSearchParams.set('search', search);
+    try {
+      // Construct new URL with updated search param
+      const newSearchParams = new URLSearchParams(
+        searchParams?.toString() || ''
+      );
+      newSearchParams.set('search', search);
 
-    // Push updated search query to the router
-    router.push(`${pathname}?${newSearchParams.toString()}`);
-
-    setIsLoading(false);
+      // Push updated search query to the router
+      router.push(`${pathname}?${newSearchParams.toString()}`);
+    } catch (error) {
+      if (error)
+        toast.error('An error occurred while updating the search query.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const clearSearch = () => {
     setSearch('');
-    const newSearchParams = new URLSearchParams(searchParams.toString());
+    const newSearchParams = new URLSearchParams(searchParams?.toString() || '');
     newSearchParams.delete('search');
     router.push(`${pathname}?${newSearchParams.toString()}`);
   };
@@ -52,13 +60,16 @@ const Search = () => {
           placeholder="Search questions"
           value={search}
           onChange={e => setSearch(e.target.value)}
-          className="w-full rounded-full pr-10 text-white" // Rounded input
+          className="w-full rounded-full pr-10 text-white"
+          disabled={isLoading}
+          aria-label="Search questions"
         />
         {search && (
           <button
             type="button"
             onClick={clearSearch}
             className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white"
+            aria-label="Clear search"
           >
             ✕
           </button>
@@ -67,6 +78,8 @@ const Search = () => {
       <button
         type="submit"
         className="shrink-0 rounded-full bg-orange-500 px-4 py-2 font-bold text-white hover:bg-orange-600 flex items-center justify-center gap-2"
+        disabled={isLoading}
+        aria-label="Submit search"
       >
         {isLoading ? (
           <div className="loader border-t-transparent border-2 border-white rounded-full w-4 h-4 animate-spin"></div>
