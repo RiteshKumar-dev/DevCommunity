@@ -1,12 +1,23 @@
-import { db, questionCollection } from "@/models/name";
-import { databases } from "@/models/server/config";
-import React from "react";
-import EditQues from "./EditQues";
+import { db, questionCollection } from '@/models/name';
+import { databases } from '@/models/server/config';
+import React from 'react';
+import EditQues from './EditQues';
 
-const Page = async ({ params }: { params: { quesId: string; quesName: string } }) => {
-    const question = await databases.getDocument(db, questionCollection, params.quesId);
+interface PageProps {
+  params: {
+    quesId: string;
+    quesName: string;
+  };
+}
 
-    return <EditQues question={question} />;
+const Page: React.FC<PageProps> = async ({ params }) => {
+  const question = await databases.getDocument(
+    db,
+    questionCollection,
+    params.quesId
+  );
+
+  return <EditQues question={question} />;
 };
 
 export default Page;
