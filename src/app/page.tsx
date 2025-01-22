@@ -6,6 +6,7 @@ import { HeroSection } from '@/components/HeroSection';
 import type { Metadata } from 'next';
 import TopContributers from './components/TopContributers';
 import LatestQuestions from './components/LatestQuestions';
+import { Suspense } from 'react';
 export const metadata: Metadata = {
   title: 'Developer Community',
   description:
@@ -15,13 +16,15 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main className="min-h-screen antialiased bg-primary bg-grid-white[0.02]">
-      <HeroSection />
-      <BackgroundBeamsWithCollisionCom />
-      <CompareDemo />
-      <AnimatedTestimonialsDemo />
-      <HeroParallaxDemo />
-      <TopContributers />
-      <LatestQuestions />
+      <Suspense fallback={<>Loading...</>}>
+        <HeroSection />
+        <BackgroundBeamsWithCollisionCom />
+        <CompareDemo />
+        <AnimatedTestimonialsDemo />
+        <HeroParallaxDemo />
+        <TopContributers />
+        <LatestQuestions />
+      </Suspense>
     </main>
   );
 }

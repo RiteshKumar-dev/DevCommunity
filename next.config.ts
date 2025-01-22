@@ -9,6 +9,10 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  experimental: {
+    // Add any other experimental features here if needed
+  },
+  // Add other Next.js configurations here if needed
 };
 
 export default nextConfig;
