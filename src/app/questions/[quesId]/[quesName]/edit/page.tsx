@@ -4,14 +4,14 @@ import React from 'react';
 import EditQues from './EditQues';
 
 interface PageProps {
-  params: Promise<{
+  params: {
     quesId: string;
     quesName: string;
-  }>;
+  };
 }
 
 const Page: React.FC<PageProps> = async ({ params }) => {
-  const { quesId } = await params; // Await the promise to extract quesId and quesName
+  const { quesId } = params; // Destructure quesId and quesName from params
   const question = await databases.getDocument(db, questionCollection, quesId);
 
   return <EditQues question={question} />;
