@@ -25,11 +25,12 @@ import { TracingBeam } from '@/components/ui/tracing-beam';
 import { ShimmerButton } from '@/components/magicui/shimmer-button';
 import Particles from '@/components/magicui/particles';
 
-const Page = async ({
-  params,
-}: {
-  params: { quesId: string; quesName: string };
-}) => {
+const Page = async (
+  props: {
+    params: Promise<{ quesId: string; quesName: string }>;
+  }
+) => {
+  const params = await props.params;
   const [question, answers, upvotes, downvotes, comments] = await Promise.all([
     databases.getDocument(db, questionCollection, params.quesId),
     databases.listDocuments(db, answerCollection, [

@@ -7,13 +7,14 @@ import Link from "next/link";
 import { Query } from "node-appwrite";
 import React from "react";
 
-const Page = async ({
-    params,
-    searchParams,
-}: {
-    params: { userId: string; userSlug: string };
-    searchParams: { page?: string; voteStatus?: "upvoted" | "downvoted" };
-}) => {
+const Page = async (
+    props: {
+        params: Promise<{ userId: string; userSlug: string }>;
+        searchParams: Promise<{ page?: string; voteStatus?: "upvoted" | "downvoted" }>;
+    }
+) => {
+    const searchParams = await props.searchParams;
+    const params = await props.params;
     searchParams.page ||= "1";
 
     const query = [

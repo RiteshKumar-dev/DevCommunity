@@ -7,13 +7,18 @@ import EditButton from './EditButton';
 import Navbar from './Navbar';
 import { IconClockFilled, IconUserFilled } from '@tabler/icons-react';
 
-const Layout = async ({
-  children,
-  params,
-}: {
-  children: React.ReactNode;
-  params: { userId: string; userSlug: string };
-}) => {
+const Layout = async (
+  props: {
+    children: React.ReactNode;
+    params: Promise<{ userId: string; userSlug: string }>;
+  }
+) => {
+  const params = await props.params;
+
+  const {
+    children
+  } = props;
+
   const user = await users.get<UserPrefs>(params.userId);
   return (
     <div className="container mx-auto space-y-4 px-4 pb-20 pt-32">
