@@ -10,8 +10,8 @@ interface PageProps {
   };
 }
 
-const Page: React.FC<PageProps> = async ({ params }) => {
-  const { quesId } = params; // Destructure quesId and quesName from params
+const Page: React.FC<PageProps> = async ({ params }: PageProps) => {
+  const { quesId } = params;
   const question = await databases.getDocument(db, questionCollection, quesId);
 
   return <EditQues question={question} />;
