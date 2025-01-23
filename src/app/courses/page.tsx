@@ -7,7 +7,7 @@ const Page = () => {
     <div className="flex flex-col justify-center items-center w-full h-full bg-primary text-white px-4">
       {/* Header Section */}
       <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-center md:mb-8 mt-6">
-        <AuroraText>Courses Page</AuroraText>
+        <AuroraText>What would you like to learn?</AuroraText>
       </h1>
       <p className="text-lg md:text-xl text-gray-300 text-center mb-12">
         In the future, we will be adding amazing courses to help you grow. Stay
