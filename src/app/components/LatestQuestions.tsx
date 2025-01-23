@@ -45,11 +45,11 @@ const LatestQuestions = async () => {
   );
 
   return (
-    <div className="flex flex-col justify-center items-start ml-10">
-      <h3 className="text-2xl md:text-3xl lg:text-7xl font-bold text-center bg-gradient-to-r from-blue-500 via-green-500 to-purple-500 bg-clip-text text-transparent mb-4 ml-6">
+    <div className="flex flex-col justify-center items-center md:items-start px-4 md:px-10 bg-primary">
+      <h3 className="text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-center bg-gradient-to-r from-blue-500 via-green-500 to-purple-500 bg-clip-text text-transparent mb-6">
         Latest Questions
       </h3>
-      <div className="mb-4 max-w-3xl space-y-6">
+      <div className="mb-4 w-full max-w-4xl space-y-6">
         {questions.documents.map(question => (
           <QuestionCard key={question.$id} ques={question} />
         ))}

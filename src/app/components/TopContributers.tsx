@@ -53,8 +53,8 @@ export default async function TopContributers() {
   const topUsers = await users.list<UserPrefs>([Query.limit(10)]);
 
   return (
-    <div className="flex flex-col w-full justify-center items-end my-6 mr-10">
-      <h3 className="text-2xl md:text-3xl lg:text-6xl font-bold text-center bg-gradient-to-r from-blue-500 via-green-500 to-purple-500 bg-clip-text text-transparent mb-6 mr-6">
+    <div className="flex flex-col w-full justify-center md:items-end my-6 mr-10 bg-primary">
+      <h3 className="text-4xl md:text-4xl lg:text-6xl font-bold text-center bg-gradient-to-r from-blue-500 via-green-500 to-purple-500 bg-clip-text text-transparent mb-6 mr-6">
         Top Contributors
       </h3>
       <div className="bg-primary relative flex max-h-[400px] min-h-[400px] w-full max-w-[32rem] flex-col overflow-hidden rounded-lg ">

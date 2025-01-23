@@ -80,6 +80,7 @@ function Navbar({ className }: { className?: string }) {
                   Search Engine Optimization
                 </HoveredLink>
                 <HoveredLink href="/branding">Branding</HoveredLink>
+                <HoveredLink href="/courses">Courses</HoveredLink>
               </div>
             </MenuItem>
             <MenuItem setActive={setActive} active={active} item="Products">
@@ -121,7 +122,7 @@ function Navbar({ className }: { className?: string }) {
           </div>
 
           {/* User Details */}
-          {user && (
+          {user ? (
             <div className="hidden md:block">
               <MenuItem setActive={setActive} active={active} item="User">
                 <div className="flex flex-col space-y-2 text-sm">
@@ -130,9 +131,11 @@ function Navbar({ className }: { className?: string }) {
                 </div>
               </MenuItem>
             </div>
+          ) : (
+            <User2 className="hidden md:block cursor-pointer" />
           )}
           <div className="md:hidden">
-            <User2 />
+            <User2 className="cursor-pointer" />
           </div>
         </div>
       </Menu>

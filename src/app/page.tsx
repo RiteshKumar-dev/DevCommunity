@@ -7,6 +7,7 @@ import type { Metadata } from 'next';
 import TopContributers from './components/TopContributers';
 import LatestQuestions from './components/LatestQuestions';
 import { Suspense } from 'react';
+import { Spinner } from '@/components/AnimatedCircularProgressBar';
 export const metadata: Metadata = {
   title: 'Developer Community',
   description:
@@ -16,7 +17,13 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main className="min-h-screen antialiased bg-primary bg-grid-white[0.02]">
-      <Suspense fallback={<>Loading...</>}>
+      <Suspense
+        fallback={
+          <>
+            <Spinner />
+          </>
+        }
+      >
         <HeroSection />
         <BackgroundBeamsWithCollisionCom />
         <CompareDemo />
