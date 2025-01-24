@@ -24,11 +24,12 @@ export default function Home() {
           </>
         }
       >
-        <HeroSection />
+        {' '}
+        <HeroParallaxDemo />
         <BackgroundBeamsWithCollisionCom />
         <CompareDemo />
         <AnimatedTestimonialsDemo />
-        <HeroParallaxDemo />
+        <HeroSection />
         <TopContributers />
         <LatestQuestions />
       </Suspense>

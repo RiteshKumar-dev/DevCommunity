@@ -11,6 +11,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { InteractiveGridPattern } from './InteractiveGridPattern';
 import { cn } from '@/lib/utils';
+import { TextGenerateEffect } from './TextGenerateEffect';
+import { ShimmerButton } from '../magicui/shimmer-button';
+import UserProfiles from './UserProfiles';
 
 export const HeroParallax = ({
   products,
@@ -59,7 +62,7 @@ export const HeroParallax = ({
   return (
     <div
       ref={ref}
-      className="h-[300vh] py-40 overflow-hidden  antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
+      className="h-[300vh] overflow-hidden antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
     >
       <Header />
       <motion.div
@@ -102,31 +105,36 @@ export const HeroParallax = ({
     </div>
   );
 };
+const words =
+  ' Dive into a world of coding challenges, solutions, and innovations. Join our vibrant developer community to share knowledge, enhance skills, andcollaborate on impactful projects using the latest technologies.';
 
 export const Header = () => {
   return (
-    <div className="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full left-0 top-0 flex flex-col items-center">
-      <h1 className="text-2xl relative z-20 md:text-4xl lg:text-7xl font-bold text-center text-black dark:text-white font-sans tracking-tight">
-        Empowering Coders
-        <div className="relative mx-auto inline-block w-max [filter:drop-shadow(0px_1px_3px_rgba(27,_37,_80,_0.14))]">
-          <div className="absolute left-0 top-[1px] bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r py-4 from-purple-500 via-violet-500 to-pink-500 [text-shadow:0_0_rgba(0,0,0,0.1)]">
-            <span className=""> To Build the Future .</span>
-          </div>
-          <div className="relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 py-4">
-            <span className=""> To Build the Future .</span>
-          </div>
-        </div>
+    <div className="max-w-7xl relative mx-auto py-16 md:py-20 px-6 w-full left-0 top-0 flex flex-col items-center text-center">
+      <h1 className="text-5xl md:text-5xl lg:text-7xl font-extrabold text-black dark:text-white tracking-tight">
+        Empowering Coders{' '}
+        <span className="bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 bg-clip-text text-transparent">
+          To Build the Future
+        </span>
       </h1>
-      <p className="max-w-2xl text-base md:text-xl mt-8 text-center dark:text-neutral-200">
-        Dive into a world of coding challenges, solutions, and innovations. Join
-        our vibrant developer community to share knowledge, enhance skills, and
-        collaborate on impactful projects using the latest technologies.
+      <p className="max-w-2xl text-3xl md:text-xl mt-4 text-left text-gray-700 dark:text-neutral-200 leading-relaxed">
+        <TextGenerateEffect words={words} />
       </p>
-
+      <ShimmerButton className="mt-4 md:mt-8">
+        <span className="text-sm md:text-lg font-medium text-white">
+          Build, Collaborate, Succeed
+        </span>
+      </ShimmerButton>
+      <div className="mt-8 mr-16">
+        <div className="">
+          <UserProfiles />
+          {/* <p className="text-2xl font-semibold ml-16 mt-6">Meet Our Team</p> */}
+        </div>
+      </div>
       <InteractiveGridPattern
         className={cn(
           '[mask-image:radial-gradient(500px_circle_at_center,white,transparent)]',
-          'absolute inset-0 h-full skew-y-12'
+          'absolute inset-0 h-[500px] skew-y-12 top-4'
         )}
       />
     </div>
