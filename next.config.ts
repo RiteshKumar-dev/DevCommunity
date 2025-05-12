@@ -7,6 +7,10 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'assets.aceternity.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'cloud.appwrite.io', // Change this to your actual domain
+      },
     ],
   },
 };

@@ -24,12 +24,11 @@ import EditQuestion from './EditQuestion';
 import { TracingBeam } from '@/components/ui/tracing-beam';
 import { ShimmerButton } from '@/components/magicui/shimmer-button';
 import Particles from '@/components/magicui/particles';
+import Image from 'next/image';
 
-const Page = async (
-  props: {
-    params: Promise<{ quesId: string; quesName: string }>;
-  }
-) => {
+const Page = async (props: {
+  params: Promise<{ quesId: string; quesName: string }>;
+}) => {
   const params = await props.params;
   const [question, answers, upvotes, downvotes, comments] = await Promise.all([
     databases.getDocument(db, questionCollection, params.quesId),
@@ -180,16 +179,18 @@ const Page = async (
               className="rounded-xl p-4"
               source={question.content}
             />
-            <picture>
-              <img
-                src={storage.getFilePreview(
+            <div className="relative w-full h-[200px] sm:h-[250px] md:h-[300px] mt-3 rounded-lg overflow-hidden">
+              <Image
+                src={storage.getFileView(
                   questionAttachmentBucket,
                   question.attachmentId
                 )}
                 alt={question.title}
-                className="mt-3 rounded-lg"
+                fill
+                className="object-contain"
               />
-            </picture>
+            </div>
+
             <div className="mt-3 flex flex-wrap items-center gap-3 text-sm">
               {question.tags.map((tag: string) => (
                 <Link
