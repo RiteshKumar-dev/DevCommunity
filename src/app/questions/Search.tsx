@@ -30,7 +30,9 @@ const Search = () => {
 
     try {
       // Construct new URL with updated search param
-      const newSearchParams = new URLSearchParams(searchParams?.toString());
+      const newSearchParams = new URLSearchParams(
+        searchParams?.toString() || ''
+      );
       newSearchParams.set('search', search);
 
       // Push updated search query to the router
@@ -45,7 +47,7 @@ const Search = () => {
 
   const clearSearch = () => {
     setSearch('');
-    const newSearchParams = new URLSearchParams(searchParams?.toString());
+    const newSearchParams = new URLSearchParams(searchParams?.toString() || '');
     newSearchParams.delete('search');
     router.push(`${pathname}?${newSearchParams.toString()}`);
   };

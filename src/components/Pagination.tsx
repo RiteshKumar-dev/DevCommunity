@@ -17,7 +17,7 @@ const Pagination: React.FC<PaginationProps> = ({ className, total, limit }) => {
   const pathname = usePathname(); // Fix variable name typo
 
   const handleNavigation = (newPage: number) => {
-    const newSearchParams = new URLSearchParams(searchParams.toString());
+    const newSearchParams = new URLSearchParams(searchParams.toString() || '');
     newSearchParams.set('page', `${newPage}`);
     router.push(`${pathname}?${newSearchParams.toString()}`);
   };
