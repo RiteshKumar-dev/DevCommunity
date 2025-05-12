@@ -14,12 +14,10 @@ import Search from './Search';
 import QuestionCard from '@/components/QuestionCard';
 import { ShimmerButton } from '@/components/magicui/shimmer-button';
 
-const Page = async (
-  props: {
-    searchParams: Promise<{ page?: string; tag?: string; search?: string }>;
-  }
-) => {
-  const searchParams = await props.searchParams;
+const Page = async (props: {
+  searchParams: Promise<{ page?: string; tag?: string; search?: string }>;
+}) => {
+  const searchParams = await props?.searchParams;
   // Await the `searchParams` object if necessary
   const page = (await searchParams.page) || '1';
   const tag = await searchParams.tag;

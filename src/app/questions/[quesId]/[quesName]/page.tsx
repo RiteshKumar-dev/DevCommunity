@@ -29,15 +29,15 @@ import Image from 'next/image';
 const Page = async (props: {
   params: Promise<{ quesId: string; quesName: string }>;
 }) => {
-  const params = await props.params;
+  const params = await props?.params;
   const [question, answers, upvotes, downvotes, comments] = await Promise.all([
-    databases.getDocument(db, questionCollection, params.quesId),
+    databases.getDocument(db, questionCollection, params?.quesId),
     databases.listDocuments(db, answerCollection, [
       Query.orderDesc('$createdAt'),
-      Query.equal('questionId', params.quesId),
+      Query.equal('questionId', params?.quesId),
     ]),
     databases.listDocuments(db, voteCollection, [
-      Query.equal('typeId', params.quesId),
+      Query.equal('typeId', params?.quesId),
       Query.equal('type', 'question'),
       Query.equal('voteStatus', 'upvoted'),
       Query.limit(1), // for optimization
