@@ -20,7 +20,6 @@ const Search = () => {
   const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Validate search input
     if (!search.trim()) {
       toast.error('Please enter a search term.');
       return;
@@ -29,17 +28,14 @@ const Search = () => {
     setIsLoading(true);
 
     try {
-      // Construct new URL with updated search param
-      const newSearchParams = new URLSearchParams(
-        searchParams?.toString() || ''
-      );
-      newSearchParams.set('search', search);
+      const currentParams = new URLSearchParams(searchParams?.toString());
+      currentParams.set('search', search);
 
-      // Push updated search query to the router
-      router.push(`${pathname}?${newSearchParams.toString()}`);
+      const newUrl = `${pathname}?${currentParams?.toString()}`;
+      router.push(newUrl);
     } catch (error) {
-      if (error)
-        toast.error('An error occurred while updating the search query.');
+      console.error('Search update error:', error);
+      toast.error('An error occurred while updating the search query.');
     } finally {
       setIsLoading(false);
     }
@@ -49,7 +45,7 @@ const Search = () => {
     setSearch('');
     const newSearchParams = new URLSearchParams(searchParams?.toString() || '');
     newSearchParams.delete('search');
-    router.push(`${pathname}?${newSearchParams.toString()}`);
+    router.push(`${pathname}?${newSearchParams?.toString()}`);
   };
 
   return (
