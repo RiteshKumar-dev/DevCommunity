@@ -11,7 +11,7 @@ interface PaginationProps {
 
 const Pagination: React.FC<PaginationProps> = ({ className, total, limit }) => {
   const searchParams = useSearchParams();
-  const page = parseInt(searchParams.get('page') || '1', 10);
+  const page = parseInt(searchParams?.get('page') || '1', 10);
   const totalPages = Math.max(1, Math.ceil(total / limit)); // Ensure totalPages is at least 1
   const router = useRouter();
   const pathname = usePathname(); // Fix variable name typo
