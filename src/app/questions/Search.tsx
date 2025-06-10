@@ -28,7 +28,7 @@ const Search = () => {
     setIsLoading(true);
 
     try {
-      const currentParams = new URLSearchParams(searchParams?.toString());
+      const currentParams = new URLSearchParams(searchParams?.toString() || '');
       currentParams.set('search', search);
 
       const newUrl = `${pathname}?${currentParams?.toString()}`;
@@ -40,7 +40,6 @@ const Search = () => {
       setIsLoading(false);
     }
   };
-
   const clearSearch = () => {
     setSearch('');
     const newSearchParams = new URLSearchParams(searchParams?.toString() || '');
